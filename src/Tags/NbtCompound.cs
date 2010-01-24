@@ -47,6 +47,12 @@ namespace LibNbt.Tags
             Tags = new List<NbtTag>();
             TagCache = new Dictionary<string, NbtTag>();
         }
+		public NbtCompound(string tagName)
+		{
+			Name = tagName;
+			Tags = new List<NbtTag>();
+			TagCache = new Dictionary<string, NbtTag>();
+		}
 
         internal override void ReadTag(Stream readStream) { ReadTag(readStream, true); }
         internal override void ReadTag(Stream readStream, bool readName)
@@ -134,7 +140,7 @@ namespace LibNbt.Tags
             writeStream.WriteByte((byte) NbtTagType.TAG_Compound);
             if (writeName)
             {
-                NbtString name = new NbtString(Name);
+                NbtString name = new NbtString("", Name);
                 name.WriteData(writeStream);
             }
 

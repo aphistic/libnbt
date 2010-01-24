@@ -16,6 +16,11 @@ namespace LibNbt.Tags
             Name = "";
             Tags = new List<NbtTag>();
         }
+		public NbtList(string tagName)
+		{
+			Name = tagName;
+			Tags = new List<NbtTag>();
+		}
 
         internal override void ReadTag(Stream readStream) { ReadTag(readStream, true); }
         internal override void ReadTag(Stream readStream, bool readName)
@@ -102,7 +107,7 @@ namespace LibNbt.Tags
             writeStream.WriteByte((byte)NbtTagType.TAG_List);
             if (writeName)
             {
-                NbtString name = new NbtString(Name);
+                NbtString name = new NbtString("", Name);
                 name.WriteData(writeStream);
             }
 

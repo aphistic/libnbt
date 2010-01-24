@@ -14,13 +14,14 @@ namespace LibNbt.Tags
         {
             Value = "";
         }
-        public NbtString(string value)
+        public NbtString(string tagName)
         {
-            Value = value;
+			Name = tagName;
+			Value = "";
         }
-        public NbtString(string name, string value)
+        public NbtString(string tagName, string value)
         {
-            Name = name;
+            Name = tagName;
             Value = value;
         }
 
@@ -52,7 +53,7 @@ namespace LibNbt.Tags
             writeStream.WriteByte((byte) NbtTagType.TAG_String);
             if (writeName)
             {
-                NbtString name = new NbtString(Name);
+                NbtString name = new NbtString("", Name);
                 name.WriteData(writeStream);
             }
 

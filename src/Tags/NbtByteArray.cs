@@ -15,6 +15,23 @@ namespace LibNbt.Tags
             Name = "";
             Value = new byte[0];
         }
+		public NbtByteArray(string tagName)
+		{
+			Name = tagName;
+			Value = new byte[0];
+		}
+		public NbtByteArray(byte[] value)
+		{
+			Name = "";
+			Value = new byte[value.Length];
+			Buffer.BlockCopy(value, 0, Value, 0, value.Length);
+		}
+		public NbtByteArray(string tagName, byte[] value)
+		{
+			Name = tagName;
+			Value = new byte[value.Length];
+			Buffer.BlockCopy(value, 0, Value, 0, value.Length);
+		}
 
         internal override void ReadTag(Stream readStream) { ReadTag(readStream, true); }
         internal override void ReadTag(Stream readStream, bool readName)
@@ -45,7 +62,7 @@ namespace LibNbt.Tags
             writeStream.WriteByte((byte)NbtTagType.TAG_Byte_Array);
             if (writeName)
             {
-                NbtString name = new NbtString(Name);
+                NbtString name = new NbtString("", Name);
                 name.WriteData(writeStream);
             }
 

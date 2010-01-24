@@ -15,14 +15,19 @@ namespace LibNbt.Tags
             Name = "";
             Value = 0;
         }
+		public NbtShort(string tagName)
+		{
+			Name = tagName;
+			Value = 0;
+		}
         public NbtShort(short value)
         {
             Name = "";
             Value = value;
         }
-        public NbtShort(string name, short value)
+        public NbtShort(string tagName, short value)
         {
-            Name = name;
+            Name = tagName;
             Value = value;
         }
 
@@ -52,7 +57,7 @@ namespace LibNbt.Tags
             writeStream.WriteByte((byte)NbtTagType.TAG_Short);
             if (writeName)
             {
-                NbtString name = new NbtString(Name);
+                NbtString name = new NbtString("", Name);
                 name.WriteData(writeStream);
             }
 

@@ -15,12 +15,16 @@ namespace LibNbt.Tags
             Name = "";
             Value = 0;
         }
+		public NbtInt(string tagName)
+		{
+			Name = tagName;
+			Value = 0;
+		}
         public NbtInt(int value)
         {
             Name = "";
             Value = value;
         }
-
         public NbtInt(string name, int value)
         {
             Name = name;
@@ -53,7 +57,7 @@ namespace LibNbt.Tags
             writeStream.WriteByte((byte)NbtTagType.TAG_Int);
             if (writeName)
             {
-                NbtString name = new NbtString(Name);
+                NbtString name = new NbtString("", Name);
                 name.WriteData(writeStream);
             }
 
