@@ -10,7 +10,7 @@ namespace LibNbt
 {
     public class NbtFile : IDisposable
     {
-        public NbtTag RootTag { get; protected set; }
+        public NbtCompound RootTag { get; protected set; }
         protected string LoadedFile { get; set; }
 
         public NbtFile() 
@@ -22,9 +22,9 @@ namespace LibNbt
             LoadedFile = fileName;
         }
 
-        public void LoadFile() { LoadFile(LoadedFile); }
+        public virtual void LoadFile() { LoadFile(LoadedFile); }
 
-        public void LoadFile(string fileName)
+        public virtual void LoadFile(string fileName)
         {
             if (LoadedFile != fileName) LoadedFile = fileName;
 
@@ -74,7 +74,7 @@ namespace LibNbt
             }
         }
 
-        public void SaveFile(string fileName)
+        public virtual void SaveFile(string fileName)
         {
             using (MemoryStream saveStream = new MemoryStream())
             {

@@ -8,13 +8,13 @@ namespace LibNbt.Tags
 {
     public class NbtByteArray : NbtTag
     {
-        public NbtByteArray()
+        public byte[] Value { get; protected set; }
+		
+		public NbtByteArray()
         {
             Name = "";
             Value = new byte[0];
         }
-
-        public byte[] Value { get; protected set; }
 
         internal override void ReadTag(Stream readStream) { ReadTag(readStream, true); }
         internal override void ReadTag(Stream readStream, bool readName)
