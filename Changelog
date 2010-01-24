@@ -1,0 +1,4 @@
+LibNbt 0.1.1
+- Initial release.
+- Modified the tag constructors to be consistant with each other.
+- Changed NbtFile to allow some functions to be overridden.
