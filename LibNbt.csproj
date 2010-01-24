@@ -47,4 +47,8 @@
     <Compile Include="src\Tags\NbtTag.cs" />
     <Compile Include="src\Tags\NbtTagType.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="LICENSE" />
+    <None Include="README.txt" />
+  </ItemGroup>
 </Project>
