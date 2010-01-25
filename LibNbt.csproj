@@ -50,5 +50,6 @@
   <ItemGroup>
     <None Include="LICENSE" />
     <None Include="README.txt" />
+    <None Include="Changelog" />
   </ItemGroup>
 </Project>
