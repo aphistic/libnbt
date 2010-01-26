@@ -9,12 +9,6 @@ namespace LibNbt.Tags
     public class NbtString : NbtTag
     {
         public string Value { get; set; }
-
-		public char this[int index]
-		{
-			get { return Value[index]; }
-			set { Value[index] = value; }
-		}
 		
         public NbtString()
         {
