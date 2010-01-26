@@ -11,6 +11,12 @@ namespace LibNbt.Tags
         public List<NbtTag> Tags { get; protected set; }
         public NbtTagType Type { get; protected set; }
 		
+		public NbtTag this[int index]
+		{
+			get { return Tags[index]; }
+			set { Tags[index] = value; }
+		}
+		
 		public NbtList()
         {
             Name = "";

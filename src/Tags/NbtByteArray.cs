@@ -10,6 +10,12 @@ namespace LibNbt.Tags
     {
         public byte[] Value { get; protected set; }
 		
+		public byte this[int index]
+		{
+			get { return Value[index]; }
+			set { Value[index] = value; }
+		}
+		
 		public NbtByteArray()
         {
             Name = "";

@@ -10,6 +10,12 @@ namespace LibNbt.Tags
     {
         public string Value { get; set; }
 
+		public char this[int index]
+		{
+			get { return Value[index]; }
+			set { Value[index] = value; }
+		}
+		
         public NbtString()
         {
             Value = "";
@@ -24,7 +30,7 @@ namespace LibNbt.Tags
             Name = tagName;
             Value = value;
         }
-
+		
         internal override void ReadTag(Stream readStream) { ReadTag(readStream, true); }
         internal override void ReadTag(Stream readStream, bool readName)
         {
