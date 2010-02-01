@@ -67,8 +67,6 @@ namespace LibNbt
                         {
                             throw new InvalidDataException("File format does not start with a TAG_Compound");
                         }
-
-                        Console.WriteLine("Finished decompressing.");
                     }
                 }
             }
