@@ -70,6 +70,11 @@ namespace LibNbt.Tags
             writeStream.Write(str, 0, str.Length);
         }
 
+        internal override NbtTagType GetTagType()
+        {
+            return NbtTagType.TAG_String;
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

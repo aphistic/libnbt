@@ -122,6 +122,21 @@ namespace LibNbt.Tags
 
         internal override void WriteData(Stream writeStream)
         {
+            // Figure out the type of this list, then check
+            // to make sure all elements are that type.
+            if (Tags.Count > 0)
+            {
+                NbtTagType listType = Tags[0].GetTagType();
+                foreach(NbtTag tag in Tags)
+                {
+                    if (tag.GetTagType() != listType)
+                    {
+                        throw new Exception("All list items must be the same tag type.");
+                    }
+                }
+                Type = listType;
+            }
+
             NbtByte tagType = new NbtByte((byte)Type);
             tagType.WriteData(writeStream);
 
@@ -132,6 +147,11 @@ namespace LibNbt.Tags
             {
                 tag.WriteData(writeStream);
             }
+        }
+
+        internal override NbtTagType GetTagType()
+        {
+            return NbtTagType.TAG_List;
         }
 
         public override string ToString()

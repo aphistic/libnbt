@@ -157,6 +157,11 @@ namespace LibNbt.Tags
             writeStream.WriteByte((byte) NbtTagType.TAG_End);
         }
 
+        internal override NbtTagType GetTagType()
+        {
+            return NbtTagType.TAG_Compound;
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

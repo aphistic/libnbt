@@ -21,5 +21,7 @@ namespace LibNbt.Tags
 
         // WriteData does not write the tag's ID byte or the name
         internal abstract void WriteData(Stream writeStream);
+
+        internal virtual NbtTagType GetTagType() { return NbtTagType.TAG_Unknown; }
     }
 }
