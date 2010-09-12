@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using System.Text;
 using LibNbt.Tags;
 
 namespace LibNbt
@@ -25,20 +23,20 @@ namespace LibNbt
 
         public virtual void LoadFile(string fileName)
         {
-            if (LoadedFile != fileName) LoadedFile = fileName;
-
             if (!File.Exists(fileName))
             {
                 throw new FileNotFoundException(string.Format("Could not find NBT file: {0}", fileName), fileName);
             }
 
+            LoadedFile = fileName;
+
             using (FileStream readFileStream = File.OpenRead(fileName))
             {
-                using (GZipStream decStream = new GZipStream(readFileStream, CompressionMode.Decompress))
+                using (var decStream = new GZipStream(readFileStream, CompressionMode.Decompress))
                 {
-                    using (MemoryStream memStream = new MemoryStream((int)readFileStream.Length))
+                    using (var memStream = new MemoryStream((int)readFileStream.Length))
                     {
-                        byte[] buffer = new byte[4096];
+                        var buffer = new byte[4096];
                         int bytesRead;
                         while ((bytesRead = decStream.Read(buffer, 0, buffer.Length)) != 0)
                         {
@@ -51,15 +49,9 @@ namespace LibNbt
                         // Make sure the first byte in this file is the tag for a TAG_Compound
                         if (memStream.ReadByte() == (int)NbtTagType.TAG_Compound)
                         {
-                            NbtCompound rootCompound = new NbtCompound();
-                            try
-                            {
-                                rootCompound.ReadTag(memStream);
-                            }
-                            catch (Exception)
-                            {
-                                throw;
-                            }
+                            var rootCompound = new NbtCompound();
+                            rootCompound.ReadTag(memStream);
+
                             RootTag = rootCompound;
                         }
                         else
@@ -73,7 +65,7 @@ namespace LibNbt
 
         public virtual void SaveFile(string fileName)
         {
-            using (MemoryStream saveStream = new MemoryStream())
+            using (var saveStream = new MemoryStream())
             {
                 if (RootTag != null)
                 {
@@ -82,9 +74,9 @@ namespace LibNbt
                     saveStream.Seek(0, SeekOrigin.Begin);
                     using (FileStream saveFile = File.OpenWrite(fileName))
                     {
-                        using (GZipStream compressStream = new GZipStream(saveFile, CompressionMode.Compress))
+                        using (var compressStream = new GZipStream(saveFile, CompressionMode.Compress))
                         {
-                            byte[] buffer = new byte[4096];
+                            var buffer = new byte[4096];
                             int amtSaved;
                             while ((amtSaved = saveStream.Read(buffer, 0, buffer.Length)) != 0)
                             {

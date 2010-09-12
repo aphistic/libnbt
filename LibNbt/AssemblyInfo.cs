@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("LibNbt")]
@@ -14,5 +13,5 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: Guid("9253db1f-f1d4-45aa-a277-4f3ba635d651")]
 
-[assembly: AssemblyVersion("0.1.2.0")]
-[assembly: AssemblyFileVersion("0.1.2.0")]
+[assembly: AssemblyVersion("0.1.3.0")]
+[assembly: AssemblyFileVersion("0.1.3.0")]
