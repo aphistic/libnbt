@@ -1,14 +1,14 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibNbt", "LibNbt\LibNbt.VS2008.csproj", "{4488498D-976D-4DA3-BF72-109531AF0488}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{83C41F58-F6F7-46F2-85C3-CDD69E7FBEE6}"
 	ProjectSection(SolutionItems) = preProject
 		docs\Changelog = docs\Changelog
 		docs\LICENSE = docs\LICENSE
 		README.txt = README.txt
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibNbt", "LibNbt\LibNbt.csproj", "{4488498D-976D-4DA3-BF72-109531AF0488}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
