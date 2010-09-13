@@ -44,9 +44,11 @@
     <None Include="libs\NUnit-2.5.7\nunit.framework.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestFiles\bigtest.nbt" />
     <None Include="TestFiles\bigtest.nbt.gz">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestFiles\test.nbt" />
     <None Include="TestFiles\test.nbt.gz">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
