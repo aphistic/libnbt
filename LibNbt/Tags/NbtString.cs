@@ -3,7 +3,7 @@ using System.Text;
 
 namespace LibNbt.Tags
 {
-    public class NbtString : NbtTag
+    public class NbtString : NbtTag, INbtTagValue<string>
     {
         public string Value { get; set; }
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LibNbt.Tags
 {
-	public class NbtCompound : NbtTag
+	public class NbtCompound : NbtTag, INbtTagList
 	{
 		public List<NbtTag> Tags { get; protected set; }
 

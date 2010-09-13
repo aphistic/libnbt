@@ -4,9 +4,9 @@ using System.Text;
 
 namespace LibNbt.Tags
 {
-	public class NbtShort : NbtTag
+	public class NbtShort : NbtTag, INbtTagValue<short>
 	{
-		public short Value { get; protected set; }
+		public short Value { get; set; }
 
 		public NbtShort() : this("") { }
 		public NbtShort(string tagName) : this(tagName, 0) { }

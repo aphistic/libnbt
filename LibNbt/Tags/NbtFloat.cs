@@ -4,9 +4,9 @@ using System.Text;
 
 namespace LibNbt.Tags
 {
-	public class NbtFloat : NbtTag
+	public class NbtFloat : NbtTag, INbtTagValue<float>
 	{
-		public float Value { get; protected set; }
+		public float Value { get; set; }
 
 		public NbtFloat() : this("") { }
 		public NbtFloat(string tagName) : this(tagName, 0.00f) { }

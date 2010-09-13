@@ -4,9 +4,9 @@ using System.Text;
 
 namespace LibNbt.Tags
 {
-	public class NbtByteArray : NbtTag
+	public class NbtByteArray : NbtTag, INbtTagValue<byte[]>
 	{
-		public byte[] Value { get; protected set; }
+		public byte[] Value { get; set; }
 		
 		public byte this[int index]
 		{

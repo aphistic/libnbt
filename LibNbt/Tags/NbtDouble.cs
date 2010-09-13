@@ -4,9 +4,9 @@ using System.Text;
 
 namespace LibNbt.Tags
 {
-	public class NbtDouble : NbtTag
+	public class NbtDouble : NbtTag, INbtTagValue<double>
 	{
-		public double Value { get; protected set; }
+		public double Value { get; set; }
 
 		public NbtDouble() : this("") { }
 		public NbtDouble(string tagName) : this(tagName, 0.00f) { }

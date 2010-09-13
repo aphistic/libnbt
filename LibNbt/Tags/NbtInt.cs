@@ -4,9 +4,9 @@ using System.Text;
 
 namespace LibNbt.Tags
 {
-	public class NbtInt : NbtTag
+	public class NbtInt : NbtTag, INbtTagValue<int>
 	{
-		public int Value { get; protected set; }
+		public int Value { get; set; }
 
 		public NbtInt() : this("") { }
 		public NbtInt(string tagName) : this(tagName, 0) { }

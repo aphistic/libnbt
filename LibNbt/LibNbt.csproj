@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="NbtFile.cs" />
+    <Compile Include="Tags\INbtTagList.cs" />
+    <Compile Include="Tags\INbtTagValue.cs" />
     <Compile Include="Tags\NbtByte.cs" />
     <Compile Include="Tags\NbtByteArray.cs" />
     <Compile Include="Tags\NbtCompound.cs" />

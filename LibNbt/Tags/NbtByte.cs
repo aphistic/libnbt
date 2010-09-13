@@ -4,9 +4,9 @@ using System.Text;
 
 namespace LibNbt.Tags
 {
-	public class NbtByte : NbtTag
+	public class NbtByte : NbtTag, INbtTagValue<byte>
 	{
-		public byte Value { get; protected set; }
+		public byte Value { get; set; }
 
 		public NbtByte() : this("") { }
 		public NbtByte(string tagName) : this(tagName, 0x00) { }

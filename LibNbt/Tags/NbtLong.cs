@@ -4,9 +4,9 @@ using System.Text;
 
 namespace LibNbt.Tags
 {
-	public class NbtLong : NbtTag
+	public class NbtLong : NbtTag, INbtTagValue<long>
 	{
-		public long Value { get; protected set; }
+		public long Value { get; set; }
 
 		public NbtLong() : this("") { }
 		public NbtLong(string tagName) : this(tagName, 0) { }
