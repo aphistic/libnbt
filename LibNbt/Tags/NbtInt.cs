@@ -8,21 +8,10 @@ namespace LibNbt.Tags
 	{
 		public int Value { get; protected set; }
 
-		public NbtInt()
-		{
-			Name = "";
-			Value = 0;
-		}
-		public NbtInt(string tagName)
-		{
-			Name = tagName;
-			Value = 0;
-		}
-		public NbtInt(int value)
-		{
-			Name = "";
-			Value = value;
-		}
+		public NbtInt() : this("") { }
+		public NbtInt(string tagName) : this(tagName, 0) { }
+		[Obsolete("This constructor will be removed in favor of using NbtInt(string tagName, int value)")]
+		public NbtInt(int value) : this("", value) { }
 		public NbtInt(string name, int value)
 		{
 			Name = name;

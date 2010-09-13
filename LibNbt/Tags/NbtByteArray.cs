@@ -14,22 +14,10 @@ namespace LibNbt.Tags
 			set { Value[index] = value; }
 		}
 		
-		public NbtByteArray()
-		{
-			Name = "";
-			Value = new byte[0];
-		}
-		public NbtByteArray(string tagName)
-		{
-			Name = tagName;
-			Value = new byte[0];
-		}
-		public NbtByteArray(byte[] value)
-		{
-			Name = "";
-			Value = new byte[value.Length];
-			Buffer.BlockCopy(value, 0, Value, 0, value.Length);
-		}
+		public NbtByteArray() : this("") { }
+		public NbtByteArray(string tagName) : this(tagName, new byte[] { }){ }
+		[Obsolete("This constructor will be removed in favor of using NbtByteArray(string tagName, byte[] value)")]
+		public NbtByteArray(byte[] value) : this("", value) { }
 		public NbtByteArray(string tagName, byte[] value)
 		{
 			Name = tagName;

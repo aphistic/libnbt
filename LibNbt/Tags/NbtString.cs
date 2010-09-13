@@ -7,15 +7,8 @@ namespace LibNbt.Tags
     {
         public string Value { get; set; }
 
-        public NbtString()
-        {
-            Value = "";
-        }
-        public NbtString(string tagName)
-        {
-            Name = tagName;
-            Value = "";
-        }
+        public NbtString() : this("") { }
+        public NbtString(string tagName) : this(tagName, "") { }
         public NbtString(string tagName, string value)
         {
             Name = tagName;

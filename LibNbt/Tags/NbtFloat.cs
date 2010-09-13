@@ -8,21 +8,10 @@ namespace LibNbt.Tags
 	{
 		public float Value { get; protected set; }
 
-		public NbtFloat()
-		{
-			Name = "";
-			Value = 0.00f;
-		}
-		public NbtFloat(string tagName)
-		{
-			Name = tagName;
-			Value = 0.00f;
-		}
-		public NbtFloat(float value)
-		{
-			Name = "";
-			Value = value;
-		}
+		public NbtFloat() : this("") { }
+		public NbtFloat(string tagName) : this(tagName, 0.00f) { }
+		[Obsolete("This constructor will be removed in favor of using NbtFloat(string tagName, float value)")]
+		public NbtFloat(float value) : this("", value) { }
 		public NbtFloat(string tagName, float value)
 		{
 			Name = tagName;

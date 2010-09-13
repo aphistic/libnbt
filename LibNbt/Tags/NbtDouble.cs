@@ -8,21 +8,10 @@ namespace LibNbt.Tags
 	{
 		public double Value { get; protected set; }
 
-		public NbtDouble()
-		{
-			Name = "";
-			Value = 0.00f;
-		}
-		public NbtDouble(string tagName)
-		{
-			Name = tagName;
-			Value = 0.00f;
-		}
-		public NbtDouble(double value)
-		{
-			Name = "";
-			Value = value;
-		}
+		public NbtDouble() : this("") { }
+		public NbtDouble(string tagName) : this(tagName, 0.00f) { }
+		[Obsolete("This constructor will be removed in favor of using NbtDouble(string tagName, double value)")]
+		public NbtDouble(double value) : this("", value) { }
 		public NbtDouble(string tagName, double value)
 		{
 			Name = tagName;

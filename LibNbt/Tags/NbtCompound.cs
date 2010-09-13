@@ -41,18 +41,21 @@ namespace LibNbt.Tags
 		}
 		protected Dictionary<string, NbtTag> TagCache { get; set; }
 
-		public NbtCompound()
-		{
-			Tags = new List<NbtTag>();
-			TagCache = new Dictionary<string, NbtTag>();
-		}
-		public NbtCompound(string tagName)
+		public NbtCompound() : this("") { }
+		public NbtCompound(string tagName) : this(tagName, new NbtTag[]{}) { }
+		public NbtCompound(string tagName, IEnumerable<NbtTag> tags)
 		{
 			Name = tagName;
 			Tags = new List<NbtTag>();
 			TagCache = new Dictionary<string, NbtTag>();
+
+			if (tags != null)
+			{
+				Tags.AddRange(tags);
+			}
 		}
 
+		#region Reading Tag
 		internal override void ReadTag(Stream readStream) { ReadTag(readStream, true); }
 		internal override void ReadTag(Stream readStream, bool readName)
 		{
@@ -132,7 +135,9 @@ namespace LibNbt.Tags
 				}
 			}
 		}
+		#endregion
 
+		#region Writing Tag
 		internal override void WriteTag(Stream writeStream) { WriteTag(writeStream, true); }
 		internal override void WriteTag(Stream writeStream, bool writeName)
 		{
@@ -145,6 +150,7 @@ namespace LibNbt.Tags
 
 			WriteData(writeStream);
 		}
+		#endregion
 
 		internal override void WriteData(Stream writeStream)
 		{

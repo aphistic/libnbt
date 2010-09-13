@@ -8,21 +8,10 @@ namespace LibNbt.Tags
 	{
 		public long Value { get; protected set; }
 
-		public NbtLong()
-		{
-			Name = "";
-			Value = 0;
-		}
-		public NbtLong(string tagName)
-		{
-			Name = tagName;
-			Value = 0;
-		}
-		public NbtLong(long value)
-		{
-			Name = "";
-			Value = value;
-		}
+		public NbtLong() : this("") { }
+		public NbtLong(string tagName) : this(tagName, 0) { }
+		[Obsolete("This constructor will be removed in favor of using NbtLong(string tagName, long value)")]
+		public NbtLong(long value) : this("", value) { }
 		public NbtLong(string tagName, long value)
 		{
 			Name = tagName;

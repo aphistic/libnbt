@@ -16,15 +16,17 @@ namespace LibNbt.Tags
 			set { Tags[index] = value; }
 		}
 		
-		public NbtList()
-		{
-			Name = "";
-			Tags = new List<NbtTag>();
-		}
-		public NbtList(string tagName)
+		public NbtList() : this("") { }
+		public NbtList(string tagName) : this(tagName, new NbtTag[] { }) { }
+		public NbtList(string tagName, IEnumerable<NbtTag> tags)
 		{
 			Name = tagName;
 			Tags = new List<NbtTag>();
+
+			if (tags != null)
+			{
+				Tags.AddRange(tags);
+			}
 		}
 
 		internal override void ReadTag(Stream readStream) { ReadTag(readStream, true); }

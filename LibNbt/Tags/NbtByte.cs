@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 
 namespace LibNbt.Tags
@@ -7,21 +8,10 @@ namespace LibNbt.Tags
 	{
 		public byte Value { get; protected set; }
 
-		public NbtByte()
-		{
-			Name = "";
-			Value = 0x00;
-		}
-		public NbtByte(string tagName)
-		{
-			Name = tagName;
-			Value = 0x00;
-		}
-		public NbtByte(byte value)
-		{
-			Name = "";
-			Value = value;
-		}
+		public NbtByte() : this("") { }
+		public NbtByte(string tagName) : this(tagName, 0x00) { }
+		[Obsolete("This constructor will be removed in favor of using NbtByte(string tagName, byte value)")]
+		public NbtByte(byte value) :this("", value) { }
 		public NbtByte(string name, byte value)
 		{
 			Name = name;
