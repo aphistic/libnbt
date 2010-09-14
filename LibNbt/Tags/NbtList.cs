@@ -9,11 +9,11 @@ namespace LibNbt.Tags
 	{
 		public List<NbtTag> Tags { get; protected set; }
 		public NbtTagType Type { get; protected set; }
-		
-		public NbtTag this[int index]
+
+		public NbtTag this[int tagIdx]
 		{
-			get { return Tags[index]; }
-			set { Tags[index] = value; }
+			get { return Get<NbtTag>(tagIdx); }
+			set { Tags[tagIdx] = value; }
 		}
 		
 		public NbtList() : this("") { }
@@ -29,6 +29,12 @@ namespace LibNbt.Tags
 			}
 		}
 
+		public T Get<T>(int tagIdx) where T : NbtTag
+		{
+			return (T) Tags[tagIdx];
+		}
+
+		#region Reading Tag
 		internal override void ReadTag(Stream readStream) { ReadTag(readStream, true); }
 		internal override void ReadTag(Stream readStream, bool readName)
 		{
@@ -107,7 +113,9 @@ namespace LibNbt.Tags
 				}
 			}
 		}
+		#endregion
 
+		#region Write Tag
 		internal override void WriteTag(Stream writeStream) { WriteTag(writeStream, true); }
 		internal override void WriteTag(Stream writeStream, bool writeName)
 		{
@@ -138,10 +146,10 @@ namespace LibNbt.Tags
 				Type = listType;
 			}
 
-			var tagType = new NbtByte((byte)Type);
+			var tagType = new NbtByte("", (byte)Type);
 			tagType.WriteData(writeStream);
 
-			var length = new NbtInt(Tags.Count);
+			var length = new NbtInt("", Tags.Count);
 			length.WriteData(writeStream);
 
 			foreach (NbtTag tag in Tags)
@@ -149,6 +157,7 @@ namespace LibNbt.Tags
 				tag.WriteData(writeStream);
 			}
 		}
+		#endregion
 
 		internal override NbtTagType GetTagType()
 		{

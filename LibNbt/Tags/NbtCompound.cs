@@ -9,35 +9,15 @@ namespace LibNbt.Tags
 	{
 		public List<NbtTag> Tags { get; protected set; }
 
-		public NbtTag this[int idx]
+		public NbtTag this[int tagIdx]
 		{
-			get { return Tags[idx]; }
+			get { return Get<NbtTag>(tagIdx); }
+			set { Set(tagIdx, value); }
 		}
-		public NbtTag this[string name]
+		public NbtTag this[string tagName]
 		{
-			get
-			{
-				if (TagCache.ContainsKey(name) &&
-					TagCache[name].Name.Equals(name))
-				{
-					return TagCache[name];
-				}
-				foreach (NbtTag tag in Tags)
-				{
-					if (tag.Name.Equals(name))
-					{
-						lock(TagCache)
-						{
-							if (!TagCache.ContainsKey(name))
-							{
-								TagCache.Add(name, tag);
-							}
-						}
-						return tag;
-					}
-				}
-				throw new KeyNotFoundException();
-			}
+			get { return Get<NbtTag>(tagName); }
+			set { Set(tagName, value); }
 		}
 		protected Dictionary<string, NbtTag> TagCache { get; set; }
 
@@ -52,6 +32,62 @@ namespace LibNbt.Tags
 			if (tags != null)
 			{
 				Tags.AddRange(tags);
+			}
+		}
+
+		#region INbtTagList Methods
+		public T Get<T>(int tagIdx) where T : NbtTag
+		{
+			return (T) Tags[tagIdx];
+		}
+		public void Set(int tagIdx, NbtTag tag)
+		{
+			if (tagIdx > Tags.Count)
+			{
+				throw new IndexOutOfRangeException();
+			}
+
+			Tags[tagIdx] = tag;
+		}
+		#endregion
+
+		public T Get<T>(string tagName) where T : NbtTag
+		{
+			if (TagCache.ContainsKey(tagName) &&
+				TagCache[tagName].Name.Equals(tagName))
+			{
+				return (T)TagCache[tagName];
+			}
+			foreach (NbtTag tag in Tags)
+			{
+				if (tag.Name.Equals(tagName))
+				{
+					lock (TagCache)
+					{
+						if (!TagCache.ContainsKey(tagName))
+						{
+							TagCache.Add(tagName, tag);
+						}
+					}
+					return (T)tag;
+				}
+			}
+			throw new KeyNotFoundException();
+		}
+		public void Set(string tagName, NbtTag tag)
+		{
+			foreach (var tg in Tags)
+			{
+				if (tg.Name.Equals(tagName))
+				{
+					int idx = Tags.IndexOf(tg);
+					Tags[idx] = tag;
+					if (TagCache.ContainsKey(tagName))
+					{
+						TagCache[tagName] = tag;
+					}
+					return;
+				}
 			}
 		}
 

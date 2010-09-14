@@ -54,7 +54,7 @@ namespace LibNbt.Tags
         {
             byte[] str = Encoding.UTF8.GetBytes(Value);
 
-            var length = new NbtShort((short)str.Length);
+            var length = new NbtShort("", (short)str.Length);
             length.WriteData(writeStream);
 
             writeStream.Write(str, 0, str.Length);

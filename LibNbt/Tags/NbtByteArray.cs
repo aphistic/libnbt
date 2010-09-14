@@ -63,7 +63,7 @@ namespace LibNbt.Tags
 
 		internal override void WriteData(Stream writeStream)
 		{
-			var length = new NbtInt(Value.Length);
+			var length = new NbtInt("", Value.Length);
 			length.WriteData(writeStream);
 
 			writeStream.Write(Value, 0, Value.Length);

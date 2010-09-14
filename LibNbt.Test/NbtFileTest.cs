@@ -21,9 +21,9 @@ namespace LibNbt.Test
             {
                 foreach (var file in Directory.GetFiles("TestTemp"))
                 {
-                    //File.Delete(file);
+                    File.Delete(file);
                 }
-                //Directory.Delete("TestTemp");
+                Directory.Delete("TestTemp");
             }
         }
 
