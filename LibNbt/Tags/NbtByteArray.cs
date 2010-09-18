@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using LibNbt.Queries;
 
 namespace LibNbt.Tags
 {
@@ -13,7 +14,7 @@ namespace LibNbt.Tags
 			get { return Value[index]; }
 			set { Value[index] = value; }
 		}
-		
+
 		public NbtByteArray() : this("") { }
 		public NbtByteArray(string tagName) : this(tagName, new byte[] { }){ }
 		[Obsolete("This constructor will be removed in favor of using NbtByteArray(string tagName, byte[] value)")]

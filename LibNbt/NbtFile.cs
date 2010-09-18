@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.IO.Compression;
+using LibNbt.Exceptions;
+using LibNbt.Queries;
 using LibNbt.Tags;
 
 namespace LibNbt
@@ -161,6 +163,17 @@ namespace LibNbt
                     outPos += BufferSize;
                 }
             }
+        }
+
+        public NbtTag Query(string query)
+        {
+            return Query<NbtTag>(query);
+        }
+        public T Query<T>(string query) where T : NbtTag
+        {
+            var tagQuery = new TagQuery(query);
+
+            return RootTag.Query<T>(tagQuery);
         }
     }
 }

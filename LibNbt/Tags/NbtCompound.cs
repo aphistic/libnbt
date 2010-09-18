@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using LibNbt.Exceptions;
+using LibNbt.Queries;
 
 namespace LibNbt.Tags
 {
@@ -49,8 +51,51 @@ namespace LibNbt.Tags
 
 			Tags[tagIdx] = tag;
 		}
+
+		public override NbtTag Query(string query)
+		{
+			return Query<NbtTag>(query);
+		}
+		public override T Query<T>(string query)
+		{
+			var tagQuery = new TagQuery(query);
+
+			return Query<T>(tagQuery);
+		}
+		internal override T Query<T>(TagQuery query, bool bypassCheck)
+		{
+			TagQueryToken token = null;
+
+			if (!bypassCheck)
+			{
+				token = query.Next();
+
+				if (token != null && !token.Name.Equals(Name))
+				{
+				    return null;
+				}
+			}
+
+			TagQueryToken nextToken = query.Peek();
+			if (nextToken != null)
+			{
+				NbtTag nextTag = Get(nextToken.Name);
+				if (nextTag == null)
+				{
+				    return null;
+				}
+
+				return nextTag.Query<T>(query);
+			}
+
+			return (T)((NbtTag)this);
+		}
 		#endregion
 
+		public NbtTag Get(string tagName)
+		{
+			return Get<NbtTag>(tagName);
+		}
 		public T Get<T>(string tagName) where T : NbtTag
 		{
 			if (TagCache.ContainsKey(tagName) &&

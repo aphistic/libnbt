@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using LibNbt.Queries;
 
 namespace LibNbt.Tags
 {
