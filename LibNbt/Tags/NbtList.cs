@@ -11,6 +11,7 @@ namespace LibNbt.Tags
     {
         public List<NbtTag> Tags { get; protected set; }
         public NbtTagType Type { get; protected set; }
+        public NbtTagType ListType { get; protected set; }
 
         public NbtTag this[int tagIdx]
         {
@@ -19,11 +20,12 @@ namespace LibNbt.Tags
         }
         
         public NbtList() : this("") { }
-        public NbtList(string tagName) : this(tagName, new NbtTag[] { }) { }
-        public NbtList(string tagName, IEnumerable<NbtTag> tags)
+        public NbtList(string tagName) : this(tagName, new NbtTag[] { }, NbtTagType.TAG_Unknown) { }
+        public NbtList(string tagName, IEnumerable<NbtTag> tags, NbtTagType listType)
         {
             Name = tagName;
             Tags = new List<NbtTag>();
+            ListType = listType;
 
             if (tags != null)
             {
@@ -97,6 +99,18 @@ namespace LibNbt.Tags
             return (T) ((NbtTag) this);
         }
 
+        public void SetListType(NbtTagType listType)
+        {
+            foreach (var tag in Tags)
+            {
+                if (tag.GetTagType() != listType)
+                {
+                    throw new Exception("All list items must be the specified tag type.");
+                }
+            }
+            ListType = listType;
+        }
+
         #region Reading Tag
         internal override void ReadTag(Stream readStream) { ReadTag(readStream, true); }
         internal override void ReadTag(Stream readStream, bool readName)
@@ -114,6 +128,7 @@ namespace LibNbt.Tags
             var tagId = new NbtByte();
             tagId.ReadTag(readStream, false);
             Type = (NbtTagType)tagId.Value;
+            ListType = Type;
 
             var length = new NbtInt();
             length.ReadTag(readStream, false);
@@ -207,6 +222,10 @@ namespace LibNbt.Tags
                     }
                 }
                 Type = listType;
+            }
+            else
+            {
+                Type = ListType;
             }
 
             var tagType = new NbtByte("", (byte)Type);
