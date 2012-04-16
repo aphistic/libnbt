@@ -117,7 +117,7 @@ namespace LibNbt.Tags
                     return (T)tag;
                 }
             }
-            return null;
+            return null; // Similar to XDocument practices
         }
         public void Set(string tagName, NbtTag tag)
         {
@@ -194,6 +194,11 @@ namespace LibNbt.Tags
                         var nextByteArray = new NbtByteArray();
                         nextByteArray.ReadTag(readStream);
                         Tags.Add(nextByteArray);
+                        break;
+                    case NbtTagType.TAG_Int_Array:
+                        var nextIntArray = new NbtIntArray();
+                        nextIntArray.ReadTag(readStream);
+                        Tags.Add(nextIntArray);
                         break;
                     case NbtTagType.TAG_String:
                         var nextString = new NbtString();

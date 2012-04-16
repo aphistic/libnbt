@@ -54,6 +54,7 @@
     <Compile Include="Tags\NbtDouble.cs" />
     <Compile Include="Tags\NbtFloat.cs" />
     <Compile Include="Tags\NbtInt.cs" />
+    <Compile Include="Tags\NbtIntArray.cs" />
     <Compile Include="Tags\NbtList.cs" />
     <Compile Include="Tags\NbtLong.cs" />
     <Compile Include="Tags\NbtShort.cs" />
