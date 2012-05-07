@@ -143,14 +143,19 @@ namespace LibNbt
                     else
                     {
                         FileContents = new byte[memStream.Length];
-
-                        int amtSaved, pos = 0;
-                        while (pos < memStream.Length &&
-                               (amtSaved = memStream.Read(buffer, pos, buffer.Length)) != 0)
-                        {
-                            Buffer.BlockCopy(buffer, 0, FileContents, pos, amtSaved);
-                            pos += amtSaved;
-                        }
+                        FileContents = memStream.GetBuffer();
+                        //int amtSaved, pos = 0;
+                        //while (pos < memStream.Length &&
+                        //       (amtSaved = memStream.Read(buffer, pos, buffer.Length)) != 0)
+                        //{
+                        //    if (amtSaved + pos <= buffer.Length)
+                        //        Buffer.BlockCopy(buffer, 0, FileContents, pos, amtSaved);
+                        //    else
+                        //        Buffer.BlockCopy(buffer, 0, FileContents, pos, buffer.Length);
+                        //    pos += amtSaved;
+                        //}
+                        //memStream.Seek(0, SeekOrigin.Begin);
+                        //memStream.Read(FileContents, 0, FileContents.Length);
                     }
                 }
 
@@ -159,6 +164,7 @@ namespace LibNbt
                 {
                     int outAmt = 0;
                     if (BufferSize > FileContents.Length) { outAmt = FileContents.Length; }
+                    else { outAmt = BufferSize; }
                     fileStream.Write(FileContents, outPos, outAmt);
                     outPos += BufferSize;
                 }
