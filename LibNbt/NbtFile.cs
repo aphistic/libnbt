@@ -158,16 +158,7 @@ namespace LibNbt
                         //memStream.Read(FileContents, 0, FileContents.Length);
                     }
                 }
-
-                int outPos = 0;
-                while (outPos < FileContents.Length)
-                {
-                    int outAmt = 0;
-                    if (BufferSize > FileContents.Length) { outAmt = FileContents.Length; }
-                    else { outAmt = BufferSize; }
-                    fileStream.Write(FileContents, outPos, outAmt);
-                    outPos += BufferSize;
-                }
+                fileStream.Write(FileContents, 0, FileContents.Length);
             }
         }
 
