@@ -11,7 +11,6 @@ namespace LibNbt.Tags
 
 		public NbtFloat() : this("") { }
 		public NbtFloat(string tagName) : this(tagName, 0.00f) { }
-		[Obsolete("This constructor will be removed in favor of using NbtFloat(string tagName, float value)")]
 		public NbtFloat(float value) : this("", value) { }
 		public NbtFloat(string tagName, float value)
 		{

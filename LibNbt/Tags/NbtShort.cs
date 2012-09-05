@@ -12,7 +12,6 @@ namespace LibNbt.Tags
 
 		public NbtShort() : this("") { }
 		public NbtShort(string tagName) : this(tagName, 0) { }
-		[Obsolete("This constructor will be removed in favor of using NbtShort(string tagName, short value)")]
 		public NbtShort(short value) : this("", value) { }
 		public NbtShort(string tagName, short value)
 		{

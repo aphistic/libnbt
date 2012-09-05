@@ -17,7 +17,6 @@ namespace LibNbt.Tags
 
         public NbtIntArray() : this("") { }
         public NbtIntArray(string tagName) : this(tagName, new int[] { }) { }
-        [Obsolete("This constructor will be removed in favor of using NbtIntArray(string tagName, byte[] value)")]
         public NbtIntArray(int[] value) : this("", value) { }
         public NbtIntArray(string tagName, int[] value)
         {
