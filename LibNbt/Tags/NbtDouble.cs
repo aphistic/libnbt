@@ -11,7 +11,6 @@ namespace LibNbt.Tags
 
 		public NbtDouble() : this("") { }
 		public NbtDouble(string tagName) : this(tagName, 0.00f) { }
-		[Obsolete("This constructor will be removed in favor of using NbtDouble(string tagName, double value)")]
 		public NbtDouble(double value) : this("", value) { }
 		public NbtDouble(string tagName, double value)
 		{
