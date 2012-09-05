@@ -13,6 +13,7 @@
         TAG_Byte_Array  =       0x07,
         TAG_String      =       0x08,
         TAG_List        =       0x09,
-        TAG_Compound    =       0x0a
+        TAG_Compound    =       0x0a,
+        TAG_Int_Array   =       0x0b
     }
 }
